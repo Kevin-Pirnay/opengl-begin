@@ -1,5 +1,5 @@
 
-unsigned int generate_vertex_array_object() //for structure of memory
+static unsigned int generate_vertex_array_object() //for structure of memory
 {
     unsigned int vao_id;
     glGenVertexArrays(1, &vao_id);
@@ -8,7 +8,7 @@ unsigned int generate_vertex_array_object() //for structure of memory
     return vao_id;
 }
 
-unsigned int generate_vertex_buffer_object() //for memory
+static unsigned int generate_vertex_buffer_object() //for memory
 {
     unsigned int vbo_id;
     glGenBuffers(1, &vbo_id);
@@ -17,7 +17,7 @@ unsigned int generate_vertex_buffer_object() //for memory
     return vbo_id;
 }
 
-unsigned int generate_indices_buffer_object()
+static unsigned int generate_indices_buffer_object()
 {
     unsigned int ibo_id;
     glGenBuffers(1, &ibo_id);
@@ -26,24 +26,24 @@ unsigned int generate_indices_buffer_object()
     return ibo_id;
 }
 
-void allocate_memory_on_gpu_for_vbo(int memory_size, int storage_mode)
+static void allocate_memory_on_gpu_for_vbo(int memory_size, int storage_mode)
 {
     glBufferData(GL_ARRAY_BUFFER, memory_size, NULL, storage_mode);
 }
 
-void load_data_into_gpu_memory_allocated(int offset, int nb_bytes, const void *data)
+static void load_data_into_gpu_memory_allocated(int offset, int nb_bytes, const void *data)
 {
     glBufferSubData(GL_ARRAY_BUFFER, offset, nb_bytes, data);
 }
 
-unsigned int get_position_variable_id(unsigned int program_id, const char *variable_name)
+static unsigned int get_position_variable_id(unsigned int program_id, const char *variable_name)
 {
     unsigned int position_variable_id = glGetAttribLocation(program_id, variable_name);
 
     return position_variable_id;
 }
 
-void assign_position_from_memory_for_attib_id_and_tell_how_to_read_it(unsigned int position_variable_id, int nb_element, int type, int normalized, int stride, const void *offset)
+static void assign_position_from_memory_for_attib_id_and_tell_how_to_read_it(unsigned int position_variable_id, int nb_element, int type, int normalized, int stride, const void *offset)
 {
     glVertexAttribPointer(position_variable_id, nb_element, type, normalized, stride, offset);
 }
