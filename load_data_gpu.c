@@ -48,7 +48,7 @@ static void assign_position_from_memory_for_attib_id_and_tell_how_to_read_it(uns
     glVertexAttribPointer(position_variable_id, nb_element, type, normalized, stride, offset);
 }
 
-unsigned int load_texture_into_graphic_card(const char *path)
+static unsigned int load_texture_into_graphic_card(const char *path)
 {
     //stbi_set_flip_vertically_on_load(1);
     int width, height, bit_depth;
