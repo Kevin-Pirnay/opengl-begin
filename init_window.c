@@ -1,5 +1,5 @@
 
-void check_if_window_is_created_successfully(GLFWwindow *window)
+static void check_if_window_is_created_successfully(GLFWwindow *window)
 {
     if ( !window )
     {
@@ -11,7 +11,7 @@ void check_if_window_is_created_successfully(GLFWwindow *window)
     }
 }
 
-GLFWwindow *initialize_window()
+static GLFWwindow *initialize_window()
 {
     if ( !glfwInit() ) { printf("error while initiating glfw\n"); exit(1); }
 
