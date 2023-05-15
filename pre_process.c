@@ -1,5 +1,5 @@
 
-const char *get_shader_code(const char *file_name)
+static const char *get_shader_code(const char *file_name)
 {
     FILE *source_file = fopen(file_name, "r");
 
@@ -30,7 +30,7 @@ const char *get_shader_code(const char *file_name)
     return (const char *)content;
 }
 
-unsigned int compiling_shader_program(unsigned int shader_type, const char *shader_source_code)
+static unsigned int compiling_shader_program(unsigned int shader_type, const char *shader_source_code)
 {
     unsigned int shader_id = glCreateShader(shader_type);
     glShaderSource(shader_id, 1, &shader_source_code, NULL);
@@ -39,7 +39,7 @@ unsigned int compiling_shader_program(unsigned int shader_type, const char *shad
     return shader_id;
 }
 
-void check_if_shader_compiled_successfully(unsigned int shader_id, const char *shader_name)
+static void check_if_shader_compiled_successfully(unsigned int shader_id, const char *shader_name)
 {
     int  success;
     char infoLog[512];
@@ -56,7 +56,7 @@ void check_if_shader_compiled_successfully(unsigned int shader_id, const char *s
     }
 }
 
-unsigned int create_and_link_shaders_program(unsigned int vertex_shader_id, unsigned int fragment_shader_id)
+static unsigned int create_and_link_shaders_program(unsigned int vertex_shader_id, unsigned int fragment_shader_id)
 {
     unsigned int program_id = glCreateProgram();
     glAttachShader(program_id, vertex_shader_id);
@@ -69,7 +69,7 @@ unsigned int create_and_link_shaders_program(unsigned int vertex_shader_id, unsi
     return program_id;
 }
 
-void check_if_program_link_successfully(unsigned int program_id)
+static void check_if_program_link_successfully(unsigned int program_id)
 {
     int  success;
     char infoLog[512];
@@ -84,7 +84,7 @@ void check_if_program_link_successfully(unsigned int program_id)
     }
 }
 
-unsigned int create_program(const char *vertex_source_file, const char *fragment_source_file)
+static unsigned int create_program(const char *vertex_source_file, const char *fragment_source_file)
 {
     const char *vertex_source_code = get_shader_code(vertex_source_file);
     const char *fragment_source_code = get_shader_code(fragment_source_file);
